@@ -1,0 +1,139 @@
+% \LaTeX beamer theme with ZBH style layout
+% this is modeled after the PowerPoint template provided by the MIN people
+% author: Sascha Steinbiss <steinbiss@zbh.uni-hamburg.de>
+% Feb 6th, 2010
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeZBH}[2010/02/06 ZBH beamer theme]
+\RequirePackage{ifthen}
+\RequirePackage[scaled=.85]{helvet}
+
+\newcommand{\headertext}{
+  Center for\\
+  Bioinformatics\\
+}
+
+\newcommand{\addresstext}{
+  University of Hamburg\\
+  Center for Bioinformatics\\
+  Bundesstra\ss e 43\\
+  20146 Hamburg, Germany\\[2mm]
+  http://www.zbh.uni-hamburg.de\\
+  info@zbh.uni-hamburg.de
+}
+
+\newboolean{@usegerman}
+\setboolean{@usegerman}{false}
+
+\DeclareOption{german}{
+  \renewcommand{\headertext}{
+    Zentrum f\"ur\\
+    Bioinformatik\\
+  }
+  \renewcommand{\addresstext}{
+    Universit\"at Hamburg\\
+    Zentrum f\"ur Bioinformatik\\
+    Bundesstra\ss e 43\\
+    20146 Hamburg\\[2mm]
+    http://www.zbh.uni-hamburg.de\\
+    info@zbh.uni-hamburg.de
+  }
+  \setboolean{@usegerman}{true}
+}
+\ProcessOptions
+
+\ifthenelse{\boolean{@usegerman}}{
+  \RequirePackage[english,ngerman]{babel}
+  \selectlanguage{ngerman}
+}{
+  \RequirePackage[ngerman,english]{babel}
+  \selectlanguage{english}
+}
+
+\mode<presentation>
+
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{date}{size=\large}
+\setbeamerfont{example text}{series=\bfseries}
+\setbeamerfont{section}{series=\bfseries}
+\setbeamercolor{structure}{fg=red}
+\setbeamercolor{title}{fg=black}
+\setbeamerfont{title}{series=\bfseries}
+
+% disable navigation symbols (who uses these anyway?)
+\setbeamertemplate{navigation symbols}{}
+
+% frame
+\setbeamercolor{frametitle}{fg=white}
+\setbeamerfont{frametitle}{series=\mdseries,size=\large}
+\setbeamerfont{framesubtitle}{series=\mdseries,size=\large}
+\setbeamertemplate{frametitle}
+{
+  \textbf{\insertframetitle}
+  \vspace{.25cm}
+}
+
+% headline
+\setbeamercolor{headline}{fg=white}
+\setbeamertemplate{headline}{
+  \vspace{4.7mm}
+  \begin{columns}
+  \begin{column}{9.7cm}
+  \end{column}
+  \begin{column}{2cm}
+    \begin{flushright}
+    \tiny
+    \headertext
+    \end{flushright}
+  \end{column}
+  \begin{column}{2cm}
+  \end{column}
+  \end{columns}
+  \normalsize
+}
+
+% title page with ZBH image
+\setbeamertemplate{title page}{
+  \vspace{5mm}
+  \textbf{\LARGE{\inserttitle}}
+  \vfill
+  \begin{columns}
+  \begin{column}{.45\textwidth}
+    \textbf{\insertauthor}\\[3mm]
+    \scriptsize
+    \addresstext
+  \end{column}
+  \begin{column}{.45\textwidth}
+    \pgfimage[width=\textwidth]{house}
+  \end{column}
+  \end{columns}
+  \normalsize
+}
+
+% footer with name, date and page numbers
+\setbeamercolor{footline}{fg=gray}
+\setbeamertemplate{footline}{
+  \tiny
+  \begin{columns}
+  \begin{column}{3.3cm}
+  \end{column}
+  \begin{column}{2cm}
+    \insertauthor
+  \end{column}
+  \begin{column}{2cm}
+    \insertdate
+  \end{column}
+  \begin{column}{2cm}
+    \hfill\insertframenumber/\inserttotalframenumber\hspace{5mm}
+  \end{column}
+  \end{columns}
+  \vspace{3mm}
+}
+
+% use ZBH slide layout template as background image
+\usebackgroundtemplate{
+  \includegraphics[width=\paperwidth,height=\paperheight]{vorlage_uni}
+}
+
+\mode
+<all>

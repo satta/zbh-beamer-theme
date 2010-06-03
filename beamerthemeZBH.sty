@@ -69,27 +69,27 @@
 \setbeamerfont{framesubtitle}{series=\mdseries,size=\large}
 \setbeamertemplate{frametitle}
 {
-  \textbf{\insertframetitle}
-  \vspace{.25cm}
+  \ifbeamer@plainframe
+  \else
+    \textbf{\insertframetitle}
+    \vspace{.25cm}
+  \fi
 }
 
 % headline
 \setbeamercolor{headline}{fg=white}
 \setbeamertemplate{headline}{
-  \vspace{4.7mm}
-  \begin{columns}
-  \begin{column}{9.7cm}
-  \end{column}
-  \begin{column}{2cm}
-    \begin{flushright}
-    \tiny
-    \headertext
-    \end{flushright}
-  \end{column}
-  \begin{column}{2cm}
-  \end{column}
-  \end{columns}
-  \normalsize
+  \ifbeamer@plainframe
+  \else
+    \vspace{8mm}
+    \leavevmode\tiny%
+    \hspace*{9.3cm}
+    \begin{minipage}[b]{2cm}
+      \flushright
+      \headertext
+    \end{minipage}
+    \normalsize
+  \fi
 }
 
 % title page with ZBH image
@@ -113,18 +113,25 @@
 % footer with name, date and page numbers
 \setbeamercolor{footline}{fg=gray}
 \setbeamertemplate{footline}{
-  \leavevmode\tiny%
-  \hspace*{3.3cm}%
-  \makebox[4cm][l]{\insertauthor}%
-  \makebox[4cm][l]{\insertdate}%
-    \hfill\insertframenumber/\inserttotalframenumber\hspace{5mm}%
-  \vspace{3mm}%
+  \ifbeamer@plainframe
+  \else
+    \leavevmode\tiny%
+    \hspace*{3.3cm}%
+    \makebox[4cm][l]{\insertauthor}%
+    \makebox[4cm][l]{\insertdate}%
+      \hfill\insertframenumber/\inserttotalframenumber\hspace{5mm}%
+    \vspace{3mm}%
+  \fi
 }
 
 % use ZBH slide layout template as background image
-\usebackgroundtemplate{
-  \includegraphics[width=\paperwidth,height=\paperheight]{vorlage_uni}
+\setbeamertemplate{background} {
+  \ifbeamer@plainframe
+  \else
+    \includegraphics[width=\paperwidth,height=\paperheight]{vorlage_uni}
+  \fi
 }
 
 \mode
 <all>
+  

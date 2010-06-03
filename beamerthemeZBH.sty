@@ -113,21 +113,12 @@
 % footer with name, date and page numbers
 \setbeamercolor{footline}{fg=gray}
 \setbeamertemplate{footline}{
-  \tiny
-  \begin{columns}
-  \begin{column}{3.3cm}
-  \end{column}
-  \begin{column}{2cm}
-    \insertauthor
-  \end{column}
-  \begin{column}{2cm}
-    \insertdate
-  \end{column}
-  \begin{column}{2cm}
-    \hfill\insertframenumber/\inserttotalframenumber\hspace{5mm}
-  \end{column}
-  \end{columns}
-  \vspace{3mm}
+  \leavevmode\tiny%
+  \hspace*{3.3cm}%
+  \makebox[4cm][l]{\insertauthor}%
+  \makebox[4cm][l]{\insertdate}%
+    \hfill\insertframenumber/\inserttotalframenumber\hspace{5mm}%
+  \vspace{3mm}%
 }
 
 % use ZBH slide layout template as background image

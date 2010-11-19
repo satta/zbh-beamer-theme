@@ -1,0 +1,97 @@
+\documentclass{beamer}
+
+\usetheme{ZBH}
+\useinnertheme{circles}
+\usecolortheme{seahorse}
+\usecolortheme{rose}
+
+\definecolor{zbhblue}{RGB}{0,42,80}
+\setbeamercolor{structure}{fg=zbhblue}
+
+\author{Max Mustermann}
+\title{Example talk}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+
+\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Inhaltsverzeichnis}
+	\tableofcontents
+\end{frame}
+
+\section{foo1}
+\subsection{foo11}
+
+\begin{frame}{Lorem ipsum}
+foo bar
+\end{frame}
+
+\begin{frame}{Lorem ipsum}
+\begin{block}{Example block}
+$$\int_{f}^3 f(x) dx$$
+\begin{itemize}
+  \item Example item
+  \pause
+  \item Another\footnote{\tiny K.~Eilbeck \emph{et al.} The Sequence Ontology: a tool for the unification of genome annotations. \emph{Genome Biol.}, 6:R44 (2005)}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{foo2}
+\begin{frame}[plain]{Listen}
+\vfill
+\begin{center}\begin{Large}This is a plain frame.\end{Large}\vfill
+\end{center}
+\vfill
+\end{frame}
+
+\section{foo3}
+\begin{frame}[<+->]{Listen}
+\framesubtitle{Listentest2}
+\begin{enumerate}
+\item foo
+\item foo
+\item foo
+\begin{enumerate}
+\item foo
+\item foo
+\end{enumerate}
+\item foo
+\end{enumerate}
+\end{frame}
+
+\section{foo5}
+\begin{frame}[allowframebreaks,allowdisplaybreaks]{Theoreme, Lemmata und Beweise}
+\begin{proof}
+        Beweis
+\end{proof}
+
+\begin{definition}
+        Definition
+\end{definition}
+
+\begin{lemma}[Hilfssatz]
+        Lemma
+\end{lemma}
+
+\begin{theorem}[Lehrsatz]
+        Theorem
+\end{theorem}
+\end{frame}
+
+
+\section{foo6}
+\begin{frame}
+\vfill
+\begin{center}\begin{Huge}Vielen Dank \\[10pt]
+f\"ur ihre Aufmerksamkeit.\end{Huge}\vfill
+\end{center}
+\vfill
+\end{frame}
+
+\end{document}

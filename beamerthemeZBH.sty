@@ -1,7 +1,7 @@
 % \LaTeX beamer theme with ZBH style layout
 % this is modeled after the PowerPoint template provided by the MIN people
 % author: Sascha Steinbiss <steinbiss@zbh.uni-hamburg.de>
-% Feb 6th, 2010
+% Jan 3rd, 2012
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemeZBH}[2010/02/06 ZBH beamer theme]
@@ -22,8 +22,13 @@
   info@zbh.uni-hamburg.de
 }
 
+\def\backgroundfile{vorlage_uni}
 \newboolean{@usegerman}
 \setboolean{@usegerman}{false}
+\newboolean{@use1610}
+\setboolean{@use1610}{false}
+\newboolean{@use169}
+\setboolean{@use169}{false}
 
 \DeclareOption{german}{
   \renewcommand{\headertext}{
@@ -40,6 +45,17 @@
   }
   \setboolean{@usegerman}{true}
 }
+
+\DeclareOption{1610}{
+  \def\backgroundfile{vorlage_uni_16_10}
+  \setboolean{@use1610}{true}
+}
+
+\DeclareOption{169}{
+  \def\backgroundfile{vorlage_uni_16_9}
+  \setboolean{@use169}{true}
+}
+
 \ProcessOptions
 
 \ifthenelse{\boolean{@usegerman}}{
@@ -48,6 +64,20 @@
 }{
   \RequirePackage[ngerman,english]{babel}
   \selectlanguage{english}
+}
+
+\ifthenelse{\boolean{@use1610}}{
+  \RequirePackage[orientation=landscape,size=custom,width=16,
+                  height=10,scale=0.5]{beamerposter} 
+}
+
+\ifthenelse{\boolean{@use169}}{
+  \ifthenelse{\boolean{@use1610}}{
+   \PackageError{zbhbeamertheme}{Options '1610' and '169' are mutually exclusive.}{}%
+  } {
+    \RequirePackage[orientation=landscape,size=custom,width=16,
+                    height=9,scale=0.5]{beamerposter}
+  }
 }
 
 \mode<presentation>
@@ -81,9 +111,21 @@
 \setbeamertemplate{headline}{
   \ifbeamer@plainframe
   \else
-    \vspace{8mm}
-    \leavevmode\tiny%
-    \hspace*{9.3cm}
+    \ifthenelse{\boolean{@use1610}}{
+      \vspace{8.5mm}
+      \leavevmode\tiny%
+      \hspace*{12.25cm}
+    }{
+      \ifthenelse{\boolean{@use169}}{
+        \vspace{7mm}
+        \leavevmode\tiny%
+        \hspace*{12.35cm}
+      }{
+        \vspace{8mm}
+        \leavevmode\tiny%
+        \hspace*{9.15cm}
+      }
+    }
     \begin{minipage}[b]{2cm}
       \flushright
       \headertext
@@ -130,7 +172,7 @@
 \setbeamertemplate{background} {
   \ifbeamer@plainframe
   \else
-    \includegraphics[width=\paperwidth,height=\paperheight]{vorlage_uni}
+    \includegraphics[width=\paperwidth,height=\paperheight]{\backgroundfile}
   \fi
 }
 

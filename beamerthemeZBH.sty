@@ -137,9 +137,15 @@
 % title page with ZBH image
 \setbeamertemplate{title page}{
   \vspace{5mm}
-  \textbf{\LARGE{\inserttitle}}
+  \ifthenelse{\boolean{@use169}}{
+    \textbf{\large{\inserttitle}}
 
-  \textbf{\large{\insertsubtitle}}
+    \textbf{\insertsubtitle}
+  }{
+    \textbf{\LARGE{\inserttitle}}
+
+    \textbf{\large{\insertsubtitle}}
+  }
   \vfill
   \begin{columns}
   \begin{column}{.45\textwidth}
